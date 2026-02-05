@@ -1,0 +1,67 @@
+const locators = {
+    LOGIN: {
+        EMAIL: '[data-qa="login-email"]',
+        PASSWORD: '[data-qa="login-password"]',
+        BTN_LOGIN: '[data-qa="login-button"]',
+    },
+    MESSAGE:{
+        INVALID_CREDENTIALS:'',
+        INVALID_NAME_OR_PASSWORD:'.login-form > form > p',
+        LOGGED_IN_AS_TEXT: 'Logged in as',
+    },
+    USER: {
+        LOGGED_IN_AS_XPATH: "//a[contains(.,'Logged in as')]",
+        LOGOUT: 'a[href="/logout"]',
+    },
+    SIGNUP:{
+        NAME:'[data-qa="signup-name"]',
+        EMAIL:'[data-qa="signup-email"]',
+        BTN_SIGNUP:'[data-qa="signup-button"]',
+    },
+    SIGNUP_FORM:{
+        TITLE: 'input[name="title"]',
+        NAME:'[data-qa="name"]',
+        EMAIL:'[data-qa="email"]',
+        PASSWORD:'[data-qa="password"]',
+        DAYS: '[data-qa="days"]',
+        MONTHS: '[data-qa="months"]',
+        YEARS:  '[data-qa="years"]',
+        NEWSLETTER: '[name="newsletter"]',
+        SPECIAL_OFFERS: '[name="optin"]',
+        FIRST_NAME: '[data-qa="first_name"]',
+        LAST_NAME: '[data-qa="last_name"]',
+        COMPANY: '[data-qa="company"]',
+        ADDRESS1: '[data-qa="address"]',
+        ADDRESS2: '[data-qa="address2"]',
+        COUNTRY: '[data-qa="country"]',
+        STATE: '[data-qa="state"]',
+        CITY: '[data-qa="city"]',
+        ZIPCODE: '[data-qa="zipcode"]',
+        MOBILE_NUMBER: '[data-qa="mobile_number"]',
+        BTN_CREATE_ACCOUNT: '[data-qa="create-account"]',
+    },
+    PRODUCTS: {
+        ADD_TO_CART_BY_ID: (id) => `a[data-product-id="${id}"]`,
+        FEATURES_ITEMS: '.features_items',
+        SEARCH_INPUT: '[name="search"]',
+        SEARCH_SUBMIT: '#submit_search',
+        PRODUCT_INFO: '.productinfo',
+        CATEGORY_SIDEBAR: '.left-sidebar',
+        CATEGORY_EXPAND: ':nth-child(1) > .panel-heading > .panel-title > a > .badge > .fa',
+        CATEGORY_LINK: (category, index) => `#${category} > .panel-body > ul > :nth-child(${index}) > a`,
+        PRODUCT_DETAILS_LINK: (id) => `a[href="/product_details/${id}"]`,
+        PRODUCT_DETAILS_CONTAINER: '.product-information',
+        PRODUCT_DETAILS_TITLE: '.product-information h2',
+        SEARCHED_TITLE_XPATH: '//h2[@class="title text-center"]',
+    },
+    CART: {
+        MODAL: '#cartModal',
+        VIEW_CART_TEXT: 'View Cart',
+        QUANTITY_BUTTONS: '.cart_quantity > button',
+        DELETE_BTN: '.cart_quantity_delete',
+        EMPTY_MESSAGE: 'Cart is empty!',
+        CHECKOUT_BTN: '.check_out',
+    }
+}
+
+export default locators;
