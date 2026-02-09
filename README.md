@@ -1,10 +1,10 @@
 # QA Automation - Cypress E2E
 
-[�🇷 Português](#português) | [🇺🇸 English](#english)
+[🇧🇷 Português](#português) | [🇺🇸 English](#english)
 
 ---
 
-<h2 id="português">�🇷 Português</h2>
+<h2 id="português">🇧🇷 Português</h2>
 
 ## 🚀 Stack de QA
 - E2E com Cypress
