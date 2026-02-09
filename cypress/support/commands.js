@@ -53,8 +53,12 @@ Cypress.Commands.add('logout', () => {
     cy.get('body').then(($body) => {
         if ($body.find(locators.USER.LOGOUT).length) {
             cy.get(locators.USER.LOGOUT).click();
+        } else if ($body.text().includes('Logout')) {
+            // If the page contains the text somewhere, click it without waiting
+            cy.contains('Logout', { timeout: 0 }).click();
         } else {
-            cy.contains('Logout').click();
+            // Nothing to do (user already logged out)
+            cy.log('logout: no logout control found, skipping');
         }
     });
 });

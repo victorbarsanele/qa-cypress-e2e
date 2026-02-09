@@ -4,10 +4,8 @@ import locators from '../support/locators';
 import 'cypress-xpath';
     
 describe('Account Creation - Sign Up', () => {
-    before(function() {
-        cy.fixture('user').then((user) => {
-            this.user = user;
-        });
+    beforeEach(function() {
+        cy.fixture('user').as('user');
     });
 
     beforeEach(function() {
@@ -21,57 +19,93 @@ describe('Account Creation - Sign Up', () => {
     });
 
     it('should allow user to enter email and password', function() {
-        cy.get(locators.SIGNUP.NAME).type(this.user.name);
-        cy.get(locators.SIGNUP.EMAIL).type(this.user.email);
-        cy.get(locators.SIGNUP.BTN_SIGNUP).click();
-        cy.url().should('include', '/signup');
-        cy.get(locators.SIGNUP_FORM.PASSWORD).type(this.user.password);
-        cy.get(locators.SIGNUP_FORM.NAME).should('have.value', this.user.name);
-        cy.get(locators.SIGNUP_FORM.EMAIL).should('have.value', this.user.email);
-        cy.get(locators.SIGNUP_FORM.PASSWORD).should('have.value', this.user.password);
+        cy.get('@user').then((user) => {
+            const email = `user${Date.now()}@example.com`;
+            cy.get(locators.SIGNUP.NAME).type(user.name);
+            cy.get(locators.SIGNUP.EMAIL).type(email);
+            cy.get(locators.SIGNUP.BTN_SIGNUP).click();
+            cy.url().should('include', '/signup');
+            cy.get(locators.SIGNUP_FORM.PASSWORD).type(user.password);
+            cy.get(locators.SIGNUP_FORM.NAME).should('have.value', user.name);
+            cy.get(locators.SIGNUP_FORM.EMAIL).should('have.value', email);
+            cy.get(locators.SIGNUP_FORM.PASSWORD).should('have.value', user.password);
+        });
     });
 
     it('should check title radio button', function() {
-        cy.get(locators.SIGNUP.NAME).type(this.user.name);
-        cy.get(locators.SIGNUP.EMAIL).type(this.user.email);
-        cy.get(locators.SIGNUP.BTN_SIGNUP).click();
-        cy.url().should('include', '/signup');
-        cy.get(locators.SIGNUP_FORM.TITLE).first().check().should('be.checked');
+        cy.get('@user').then((user) => {
+            const email = `user${Date.now()}@example.com`;
+            cy.get(locators.SIGNUP.NAME).type(user.name);
+            cy.get(locators.SIGNUP.EMAIL).type(email);
+            cy.get(locators.SIGNUP.BTN_SIGNUP).click();
+            cy.url().should('include', '/signup');
+            cy.get(locators.SIGNUP_FORM.TITLE).first().check().should('be.checked');
+        });
     });
 
     it('should allow user to select date of birth', function() {
-        cy.get(locators.SIGNUP.NAME).type(this.user.name);
-        cy.get(locators.SIGNUP.EMAIL).type(this.user.email);
-        cy.get(locators.SIGNUP.BTN_SIGNUP).click();
-        cy.url().should('include', '/signup');
-        cy.get(locators.SIGNUP_FORM.PASSWORD).type(this.user.password);
-        cy.get(locators.SIGNUP_FORM.NAME).should('have.value', this.user.name);
-        cy.get(locators.SIGNUP_FORM.EMAIL).should('have.value', this.user.email);
-        cy.get(locators.SIGNUP_FORM.PASSWORD).should('have.value', this.user.password);
-        cy.get(locators.SIGNUP_FORM.DAYS).select('10').should('have.value', '10');
-        cy.get(locators.SIGNUP_FORM.MONTHS).select('May').should('have.value', '5');
-        cy.get(locators.SIGNUP_FORM.YEARS).select('1990').should('have.value', '1990');
+        cy.get('@user').then((user) => {
+            const email = `user${Date.now()}@example.com`;
+            cy.get(locators.SIGNUP.NAME).type(user.name);
+            cy.get(locators.SIGNUP.EMAIL).type(email);
+            cy.get(locators.SIGNUP.BTN_SIGNUP).click();
+            cy.url().should('include', '/signup');
+            cy.get(locators.SIGNUP_FORM.PASSWORD).type(user.password);
+            cy.get(locators.SIGNUP_FORM.NAME).should('have.value', user.name);
+            cy.get(locators.SIGNUP_FORM.EMAIL).should('have.value', email);
+            cy.get(locators.SIGNUP_FORM.PASSWORD).should('have.value', user.password);
+            cy.get(locators.SIGNUP_FORM.DAYS).select('10').should('have.value', '10');
+            cy.get(locators.SIGNUP_FORM.MONTHS).select('May').should('have.value', '5');
+            cy.get(locators.SIGNUP_FORM.YEARS).select('1990').should('have.value', '1990');
+        });
     });
     
     it('should allow user to check newsletter and special offers', function() {
-        cy.get(locators.SIGNUP.NAME).type(this.user.name);
-        cy.get(locators.SIGNUP.EMAIL).type(this.user.email);
-        cy.get(locators.SIGNUP.BTN_SIGNUP).click();
-        cy.url().should('include', '/signup');
-        cy.get(locators.SIGNUP_FORM.PASSWORD).type(this.user.password);
-        cy.get(locators.SIGNUP_FORM.NAME).should('have.value', this.user.name);
-        cy.get(locators.SIGNUP_FORM.EMAIL).should('have.value', this.user.email);
-        cy.get(locators.SIGNUP_FORM.PASSWORD).should('have.value', this.user.password);
-        cy.get(locators.SIGNUP_FORM.NEWSLETTER).check().should('be.checked');
-        cy.get(locators.SIGNUP_FORM.SPECIAL_OFFERS).check().should('be.checked');
+        cy.get('@user').then((user) => {
+            const email = `user${Date.now()}@example.com`;
+            cy.get(locators.SIGNUP.NAME).type(user.name);
+            cy.get(locators.SIGNUP.EMAIL).type(email);
+            cy.get(locators.SIGNUP.BTN_SIGNUP).click();
+            cy.url().should('include', '/signup');
+            cy.get(locators.SIGNUP_FORM.PASSWORD).type(user.password);
+            cy.get(locators.SIGNUP_FORM.NAME).should('have.value', user.name);
+            cy.get(locators.SIGNUP_FORM.EMAIL).should('have.value', email);
+            cy.get(locators.SIGNUP_FORM.PASSWORD).should('have.value', user.password);
+            cy.get(locators.SIGNUP_FORM.NEWSLETTER).check().should('be.checked');
+            cy.get(locators.SIGNUP_FORM.SPECIAL_OFFERS).check().should('be.checked');
+        });
     });     
-        it('should fill all the form fields', function() {
-            cy.get(locators.SIGNUP.NAME).type(this.user.name);
-            cy.get(locators.SIGNUP.EMAIL).type(this.user.email);
+
+    it('should not accept email without @ symbol' , () => {
+        cy.get(locators.SIGNUP.NAME).type('Test User');
+        cy.get(locators.SIGNUP.EMAIL).type('invalidemailformat');
+        cy.get(locators.SIGNUP.BTN_SIGNUP).click();
+        cy.get(locators.SIGNUP.EMAIL).invoke('prop', 'validationMessage')
+        .should('not.be.empty')
+        .should('contain', '\@');
+    }); 
+
+    it('should not accept empty password field', () => {
+        cy.get('@user').then((user) => {
+            const email = `user${Date.now()}@example.com`;
+            cy.get(locators.SIGNUP.NAME).type('Test User');
+            cy.get(locators.SIGNUP.EMAIL).type(email);
+            cy.get(locators.SIGNUP.BTN_SIGNUP).click();
+            cy.get(locators.SIGNUP_FORM.BTN_CREATE_ACCOUNT).click();
+            cy.get(locators.SIGNUP_FORM.PASSWORD).invoke('prop', 'validationMessage')
+                .should('not.be.empty');
+        });
+    });
+
+    it('should fill all the form fields', function() {
+        cy.get('@user').then((user) => {
+            const email = `user${Date.now()}@example.com`;
+            cy.get(locators.SIGNUP.NAME).type(user.name);
+            cy.get(locators.SIGNUP.EMAIL).type(email);
             cy.get(locators.SIGNUP.BTN_SIGNUP).click();
             cy.url().should('include', '/signup');
             cy.get(locators.SIGNUP_FORM.TITLE).first().check()
-            cy.get(locators.SIGNUP_FORM.PASSWORD).type(this.user.password);
+            cy.get(locators.SIGNUP_FORM.PASSWORD).type(user.password);
             cy.get(locators.SIGNUP_FORM.DAYS).select('10');
             cy.get(locators.SIGNUP_FORM.MONTHS).select('May');
             cy.get(locators.SIGNUP_FORM.YEARS).select('1990');
@@ -90,6 +124,7 @@ describe('Account Creation - Sign Up', () => {
             cy.get(locators.SIGNUP_FORM.BTN_CREATE_ACCOUNT).click();
             cy.url().should('include', '/account_created');
             cy.xpath('//b[text()="Account Created!"]').should('be.visible');
-
         });
-    }); 
+
+    });
+}); 

@@ -35,6 +35,18 @@ describe('Cart functionality', () => {
         cy.contains(locators.CART.EMPTY_MESSAGE).should('be.visible');
     });
 
+    it('should check persistency of cart items after page reload', () => {
+        // Add product to cart first
+        cy.addToCart(1);
+        cy.get(locators.CART.QUANTITY_BUTTONS).should('have.length.at.least', 1);
+
+        // Reload the page to check cart persistence
+        cy.reload();
+
+        // Verify cart items are still present after reload
+        cy.get(locators.CART.QUANTITY_BUTTONS).should('have.length.at.least', 1);
+    });
+
     it('should proceed to checkout from the cart', () => {
         // Add product to cart first
         cy.addToCart(1);
