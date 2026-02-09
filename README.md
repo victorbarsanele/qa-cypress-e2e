@@ -1,5 +1,7 @@
 # QA Automation - Cypress E2E
 
+[![CI](https://github.com/victorbarsanele/qa-cypress-e2e/actions/workflows/ci.yml/badge.svg)](https://github.com/victorbarsanele/qa-cypress-e2e/actions/workflows/ci.yml)
+
 [🇧🇷 Português](#português) | [🇺🇸 English](#english)
 
 ---
@@ -326,6 +328,14 @@ it('deve criar conta com email único', function() {
 - **O comando `cy.logout()` é idempotente e seguro em hooks de setup**
 - A URL base pode ser substituída em tempo de execução: `npx cypress run --config baseUrl=https://example.com`
 
+---
+
+## Decisões de QA
+Alguns cenários não foram automatizados por não existirem regras de negócio explícitas na aplicação, como:
+- Validação de complexidade de senha
+- Mensagem de “nenhum resultado encontrado” na busca
+
+Essas limitações foram respeitadas para evitar testes frágeis ou não representativos do comportamento real do sistema.
 ---
 
 ## 📚 Recursos
